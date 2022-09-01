@@ -38,6 +38,16 @@ echo
 echo "=== Getting product id: the_odyssey ==="
 curl -s "${STD_APP_URL}/products/the_odyssey" | jq .
 
+# Test: Delete Product
+echo "=== Creating a product id: voyager ==="
+curl -s -XPOST  "${STD_APP_URL}/products" \
+    -H 'accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{"id": "voyager", "title": "The Voyager", "passenger_capacity": 1, "maximum_speed": 8, "in_stock": 3}'
+
+echo "=== Deleting product id: voyager ==="
+curl -s -XDELETE "${STD_APP_URL}/products/voyager"
+
 # Test: Create Order
 echo "=== Creating Order ==="
 ORDER_ID=$(
