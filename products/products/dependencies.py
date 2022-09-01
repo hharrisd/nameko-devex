@@ -57,6 +57,14 @@ class StorageWrapper:
         return self.client.hincrby(
             self._format_key(product_id), 'in_stock', -amount)
 
+    def delete(self, product_id):
+        formated_id = self._format_key(product_id)
+        product = self.client.hgetall(formated_id)
+        if not product:
+            raise NotFound('Product ID {} does not exist'.format(product_id))
+        else:
+            self.client.delete(formated_id)
+
 
 class Storage(DependencyProvider):
 

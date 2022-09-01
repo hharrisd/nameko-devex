@@ -21,6 +21,10 @@ class ProductSchema(Schema):
     passenger_capacity = fields.Int(required=True)
 
 
+class DeleteProductSchema(Schema):
+    id = fields.Str(required=True)
+
+
 class GetOrderSchema(Schema):
 
     class OrderDetail(Schema):
